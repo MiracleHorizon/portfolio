@@ -3,6 +3,7 @@ import { ThemeProvider } from 'next-themes'
 import type { Metadata } from 'next'
 import type { PropsWithChildren } from 'react'
 
+import { Layout } from '@components/layout'
 import { TanstackQueryProvider } from '@lib/tanstack-query'
 import { DEFAULT_THEME, THEME_LS_KEY } from '@lib/theme/constants'
 import { PROFILE_FULL_NAME } from '@site/profile'
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
           disableTransitionOnChange
         >
           <TanstackQueryProvider>
-            <>{children}</>
+            <Layout>{children}</Layout>
           </TanstackQueryProvider>
         </ThemeProvider>
       </body>
