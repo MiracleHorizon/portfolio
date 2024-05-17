@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { clsx } from 'clsx'
 import { type FC, type ReactNode, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { ArrowRightIcon, HomeIcon, PresentationIcon, RocketIcon, UserIcon } from 'lucide-react'
 
+import { mergeCn } from '@lib/tailwind-merge'
 import { PATH_ABOUT, PATH_CONTACT, PATH_HOME, PATH_PROJECTS } from '@site/paths'
 
 const iconsSizes = {
@@ -51,33 +51,29 @@ const NavigationItem: FC<NavigationItemProps> = ({
   const pathname = usePathname()
   const isActiveRoute = pathname === href
 
-  const activeClassNames = `flex items-center gap-2 py-2 pl-4 pr-2.5 text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 hover:dark:text-neutral-300 rounded-lg group ${
-    pathname === href
+  const activeClassNames = mergeCn(
+    'flex items-center font-medium text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 hover:dark:text-neutral-300 gap-2 py-2 pl-4 pr-2.5 rounded-lg group [&_svg]:dark:text-neutral-400',
+    isActiveRoute
       ? 'bg-neutral-200 dark:bg-neutral-800 text-neutral-900 dark:!text-neutral-200'
       : 'hover:dark:lg:bg-neutral-800 hover:dark:!text-neutral-300 hover:lg:bg-neutral-200 hover:lg:rounded-lg lg:transition-all lg:duration-300'
-  }`
+  )
 
   const handleMouseEnter = () => setIsHovered(true)
   const handleMouseLeave = () => setIsHovered(false)
 
   const itemJSX = () => (
     <div
-      className={clsx(activeClassNames, className)}
+      className={mergeCn(activeClassNames, className)}
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {!hideIcon && (
-        <div
-          className={clsx(
-            'transition-all duration-300 group-hover:-rotate-[20deg]',
-            isActiveRoute && 'animate-pulse'
-          )}
-        >
-          {icon}
-        </div>
+        <div className='transition-all duration-300 group-hover:-rotate-[20deg]'>{icon}</div>
       )}
-      <div className='ml-0.5 flex-grow'>{label}</div>
+      <div className={mergeCn('ml-0.5 flex-grow', isActiveRoute && 'gradient-highlight')}>
+        {label}
+      </div>
 
       {children}
 
@@ -106,15 +102,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
 
 export default NavigationItem
 
-export const NavigationMenu = () => (
-  <nav className='flex flex-col gap-1 font-medium'>
-    {navigationItems.map(item => (
-      <NavigationItem key={item.href} {...item} />
-    ))}
-  </nav>
-)
-
-export type NavigationItemProps = {
+interface NavigationItemProps {
   label: string
   href: string
   icon?: ReactNode
@@ -123,3 +111,11 @@ export type NavigationItemProps = {
   hideIcon?: boolean
   onClick?: VoidFunction
 }
+
+export const NavigationMenu = () => (
+  <nav className='flex flex-col gap-1'>
+    {navigationItems.map(item => (
+      <NavigationItem key={item.href} {...item} />
+    ))}
+  </nav>
+)
