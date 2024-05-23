@@ -130,12 +130,6 @@
     "no-unreachable": "error",
     "no-unsafe-finally": "error",
     "require-atomic-updates": "error",
-    "use-isnan": "error",
-    "camelcase": [
-      "error",
-      {
-        "properties": "always"
-      }
-    ]
+    "use-isnan": "error"
   }
 }
