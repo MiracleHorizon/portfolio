@@ -5,8 +5,15 @@ import { PROFILE_NICKNAME } from '@site/profile'
 import { parseProjectStack } from '@lib/helpers/parseProjectStack'
 import { getReadmeContent } from '../api/get-readme-content'
 import type { IStoredProject } from '../types'
+import { DEFAULT_BRANCH, GITHUB_API_RAW } from '@site/github'
 
-export async function Project({ title, description, stack, link_readme_md }: IStoredProject) {
+export async function Project({
+  title,
+  description,
+  stack,
+  link_repo,
+  link_readme_md
+}: IStoredProject) {
   const readmeContent = await getReadmeContent(link_readme_md)
   const parsedStack = parseProjectStack(stack)
 
@@ -31,7 +38,8 @@ export async function Project({ title, description, stack, link_readme_md }: ISt
       )}
 
       <MDXComponent
-        repoRawUrl={`https://raw.githubusercontent.com/${PROFILE_NICKNAME}/${title}/main`}
+        repoUrl={link_repo}
+        repoRawUrl={`${GITHUB_API_RAW}/${PROFILE_NICKNAME}/${title}/${DEFAULT_BRANCH}`}
       >
         {readmeContent}
       </MDXComponent>

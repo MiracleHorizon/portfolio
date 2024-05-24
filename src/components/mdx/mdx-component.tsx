@@ -1,6 +1,7 @@
 import type { FC, PropsWithChildren } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import dynamic from 'next/dynamic'
 
 import { mergeCn } from '@lib/tailwind-merge'
@@ -10,28 +11,49 @@ const MdxCodeBlock = dynamic(() => import('./mdx-code-block').then(mod => mod.Md
   loading: () => <div className='mb-12 mt-12 h-36 w-full' />
 })
 
-interface MarkdownRendererProps {
-  children: string
-}
-
 const Table: FC<PropsWithChildren> = ({ children }) => (
   <div className='table-container'>
     <table className='table w-full'>{children}</table>
   </div>
 )
 
-export const MDXComponent: FC<Props> = ({ children, repoRawUrl }) => (
+interface MarkdownRendererProps {
+  children: string
+}
+
+interface Props extends MarkdownRendererProps {
+  repoUrl: string
+  repoRawUrl: string
+}
+
+export const MDXComponent: FC<Props> = ({ children, repoUrl, repoRawUrl }) => (
   <ReactMarkdown
     remarkPlugins={[remarkGfm]}
+    rehypePlugins={[rehypeRaw]}
     components={{
-      br: () => null,
-      a: ({ target, ...props }) => (
-        <a
-          className='cursor-pointer text-sky-500 hover:text-sky-400 hover:underline'
-          target={target ?? '_blank'}
-          {...props}
-        />
-      ),
+      br: () => <br />,
+      a: ({ href, target, className, ...props }) => {
+        if (!href) {
+          return null
+        }
+
+        // Currently, assets are not supported
+        if (href.startsWith(`${repoUrl}/assets`)) {
+          return null
+        }
+
+        return (
+          <a
+            href={href}
+            target={target ?? '_blank'}
+            className={mergeCn(
+              'cursor-pointer text-sky-500 hover:text-sky-400 hover:underline',
+              className
+            )}
+            {...props}
+          />
+        )
+      },
       p: ({ className, ...props }) => <div className={mergeCn('mb-3', className)} {...props} />,
       h2: props => <h2 className='mb-4 text-xl font-medium dark:text-neutral-300' {...props} />,
       h3: props => (
@@ -62,7 +84,3 @@ export const MDXComponent: FC<Props> = ({ children, repoRawUrl }) => (
     {children}
   </ReactMarkdown>
 )
-
-interface Props extends MarkdownRendererProps {
-  repoRawUrl: string
-}
