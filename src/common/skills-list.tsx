@@ -17,6 +17,8 @@ import {
   SiJavascriptHex,
   SiJest,
   SiJestHex,
+  SiMantine,
+  SiMantineHex,
   SiMobx,
   SiMobxHex,
   SiMongodb,
@@ -26,8 +28,8 @@ import {
   SiNextdotjs,
   SiNodedotjs,
   SiNodedotjsHex,
-  SiNuxtdotjs,
-  SiNuxtdotjsHex,
+  SiPnpm,
+  SiPnpmHex,
   SiPostgresql,
   SiPostgresqlHex,
   SiPrettier,
@@ -37,6 +39,8 @@ import {
   SiRadixui,
   SiReact,
   SiReactHex,
+  SiReactrouter,
+  SiReactrouterHex,
   SiRedux,
   SiReduxHex,
   SiSass,
@@ -45,15 +49,18 @@ import {
   SiTailwindcssHex,
   SiTypescript,
   SiTypescriptHex,
-  SiVite,
-  SiViteHex,
   SiVitest,
   SiVitestHex,
   SiVuedotjs,
   SiVuedotjsHex,
   SiWebpack,
-  SiWebpackHex
+  SiWebpackHex,
+  SiYarn,
+  SiYarnHex
 } from '@icons-pack/react-simple-icons'
+
+import { PiniaLogo } from './logos/pinia-logo'
+import { ViteLogo } from './logos/vite-logo'
 
 export const skillsList = {
   JavaScript: <SiJavascript color={SiJavascriptHex} />,
@@ -65,9 +72,8 @@ export const skillsList = {
   Express: <SiExpress color={SiExpressHex} />,
   Prisma: <SiPrisma color={SiPrismaHex} />,
   Vue: <SiVuedotjs color={SiVuedotjsHex} />,
-  'Nuxt.js': <SiNuxtdotjs color={SiNuxtdotjsHex} />,
   TailwindCSS: <SiTailwindcss color={SiTailwindcssHex} />,
-  Vite: <SiVite color={SiViteHex} />,
+  Vite: <ViteLogo width='24' height='24' />,
   Webpack: <SiWebpack color={SiWebpackHex} />,
   Vitest: <SiVitest color={SiVitestHex} />,
   Jest: <SiJest color={SiJestHex} />,
@@ -79,12 +85,17 @@ export const skillsList = {
   GitHub: <SiGithub color={SiGithubHex} />,
   Redux: <SiRedux color={SiReduxHex} />,
   MobX: <SiMobx color={SiMobxHex} />,
+  pnpm: <SiPnpm color={SiPnpmHex} />,
+  yarn: <SiYarn color={SiYarnHex} />,
   // Zustand: <SiZustand />,
+  Pinia: <PiniaLogo width='24' height='24' />,
   CSS: <SiCss3 color={SiCss3Hex} />,
   RadixUI: <SiRadixui className='text-neutral-800 dark:text-neutral-200' />,
   HTML: <SiHtml5 color={SiHtml5Hex} />,
   Prettier: <SiPrettier color={SiPrettierHex} />,
   ESLint: <SiEslint color={SiEslintHex} />,
-  SASS: <SiSass color={SiSassHex} />
+  SASS: <SiSass color={SiSassHex} />,
+  Mantine: <SiMantine color={SiMantineHex} />,
+  'react-router': <SiReactrouter color={SiReactrouterHex} />
   // Emotion: <SiEmotion />
 }
