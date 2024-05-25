@@ -16,8 +16,8 @@ export function Projects({ storedProjects }: Props) {
       ...project,
       linkRepo: project.link_repo,
       linkDemo: project.link_demo,
-      stack: parseProjectStack(project.stack),
-      linkReadme: project.link_readme_md
+      linkReadme: project.link_readme_md,
+      stack: parseProjectStack(project.stack)
     }))
   }, [storedProjects])
 
@@ -27,7 +27,7 @@ export function Projects({ storedProjects }: Props) {
 
   return (
     <main className='w-full'>
-      <ul className='grid w-full grid-cols-2 gap-4'>
+      <ul className='flex w-full flex-col gap-4 sm:grid sm:grid-cols-2'>
         {projects.map(repository => (
           <ProjectCard key={repository.id} {...repository} />
         ))}

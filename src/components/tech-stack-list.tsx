@@ -6,8 +6,12 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@ui/to
 import { mergeCn } from '@lib/tailwind-merge'
 import { skillsList } from '@common/skills-list'
 
+interface Props extends HTMLAttributes<HTMLUListElement> {
+  stack: string[]
+}
+
 export const TechStackList: FC<Props> = ({ stack, className, ...props }) => (
-  <ul className={mergeCn('flex items-center gap-x-3', className)} {...props}>
+  <ul className={mergeCn('flex items-center overflow-hidden gap-x-3', className)} {...props}>
     {stack.map(technology => {
       const skillIcon = skillsList[technology as keyof typeof skillsList]
 
@@ -18,9 +22,10 @@ export const TechStackList: FC<Props> = ({ stack, className, ...props }) => (
       return (
         <TooltipProvider key={technology}>
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger className='cursor-default'>
               <li>{skillIcon}</li>
             </TooltipTrigger>
+
             <TooltipContent>
               <p>{technology}</p>
             </TooltipContent>
@@ -30,7 +35,3 @@ export const TechStackList: FC<Props> = ({ stack, className, ...props }) => (
     })}
   </ul>
 )
-
-interface Props extends HTMLAttributes<HTMLUListElement> {
-  stack: string[]
-}
