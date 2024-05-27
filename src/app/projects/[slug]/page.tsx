@@ -1,6 +1,6 @@
 import { Project } from './components/Project'
-import { getProject } from './api/get-project'
-import { getReadmeContent } from './api/get-readme-content'
+import { fetchProjectByTitle } from './api/fetchProjectByTitle'
+import { fetchProjectReadme } from './api/fetchProjectReadme'
 import { snakeCaseToCamelCase } from '@helpers/snakeCaseToCamelCase'
 
 interface Props {
@@ -10,13 +10,13 @@ interface Props {
 }
 
 const ProjectPage = async ({ params }: Props) => {
-  const project = await getProject(params.slug)
+  const project = await fetchProjectByTitle(params.slug)
 
   if (!project) {
     return <div>Project not found</div>
   }
 
-  const readmeContent = await getReadmeContent(project.link_readme_md)
+  const readmeContent = await fetchProjectReadme(project.link_readme_md)
 
   return <Project project={snakeCaseToCamelCase(project)} mdxContent={readmeContent} />
 }

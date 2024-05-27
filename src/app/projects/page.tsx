@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 
 import { Projects } from './components/Projects'
-import { getAllProjects } from './api/get-all-projects'
+import { fetchManyProjects } from './api/fetchManyProjects'
 
 export const metadata: Metadata = {
   title: 'Projects'
 }
 
 const ProjectsPage = async () => {
-  const projects = await getAllProjects()
+  const projects = await fetchManyProjects()
 
   return <Projects storedProjects={projects} />
 }

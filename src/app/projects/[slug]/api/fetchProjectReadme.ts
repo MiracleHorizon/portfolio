@@ -1,6 +1,6 @@
 const DEFAULT_CONTENT = ''
 
-export const getReadmeContent = async (readmePath: string | null): Promise<string> => {
+export const fetchProjectReadme = async (readmePath: string | null): Promise<string> => {
   // TODO: Link validation
   if (!readmePath || readmePath === '') {
     return DEFAULT_CONTENT
