@@ -5,7 +5,7 @@ export interface IStoredProject {
   link_demo: string
   link_repo: string
   link_readme_md: string | null
-  stack: string // Expected to be an array in JSON
+  stack: string | null // Expected to be an array in JSON
   cover: string | null
 }
 
