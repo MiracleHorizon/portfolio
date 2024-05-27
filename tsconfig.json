@@ -59,17 +59,14 @@
       "@/*": [
         "./src/*"
       ],
-      "@config/*": [
-        "./src/config/*"
+      "@app/*": [
+        "./src/app/*"
       ],
       "@site/*": [
         "./src/site/*"
       ],
       "@common/*": [
         "./src/common/*"
-      ],
-      "@modules/*": [
-        "./src/modules/*"
       ],
       "@components/*": [
         "./src/components/*"
@@ -80,8 +77,8 @@
       "@lib/*": [
         "./src/lib/*"
       ],
-      "@hooks/*": [
-        "./src/hooks/*"
+      "@helpers/*": [
+        "./src/lib/helpers/*"
       ]
     },
     "plugins": [

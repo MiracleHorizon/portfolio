@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardTitle } from '@ui/Card'
 import { PATH_PROJECTS } from '@site/paths'
 import type { IProject } from '@modules/projects/types'
 
-export const ProjectCard = ({ id, title, cover, stack, description }: IProject) => (
-  <Link href={`${PATH_PROJECTS}/${id}`}>
+export const ProjectCard = ({ title, cover, stack, description }: IProject) => (
+  <Link href={`${PATH_PROJECTS}/${title}`}>
     <Card className='group relative w-full cursor-pointer border border-neutral-200 shadow-none dark:border-neutral-800'>
       <div className='h-48 w-full rounded-t-xl'>
         {cover ? (

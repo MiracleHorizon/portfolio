@@ -3,8 +3,9 @@
 import { useMemo } from 'react'
 
 import { ProjectCard } from './ProjectCard'
-import { parseProjectStack } from '@lib/helpers/parseProjectStack'
-import type { IStoredProject } from '@modules/projects/types'
+import { parseJsonArray } from '@helpers/parseJsonArray'
+import { snakeCaseToCamelCase } from '@helpers/snakeCaseToCamelCase'
+import type { IStoredProject } from '@app/projects/types'
 
 interface Props {
   storedProjects: IStoredProject[]
@@ -16,12 +17,9 @@ export const Projects = ({ storedProjects }: Props) => {
       return []
     }
 
-    return storedProjects.map(project => ({
-      ...project,
-      linkRepo: project.link_repo,
-      linkDemo: project.link_demo,
-      linkReadme: project.link_readme_md,
-      stack: project.stack ? parseProjectStack(project.stack) : []
+    return storedProjects.map(({ stack, ...project }) => ({
+      ...snakeCaseToCamelCase(project),
+      stack: stack ? parseJsonArray(stack) : []
     }))
   }, [storedProjects])
 

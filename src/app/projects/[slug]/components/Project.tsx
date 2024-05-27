@@ -1,21 +1,21 @@
 import { Separator } from '@ui/Separator'
 import { MDXComponent } from '@components/mdx'
 import { TechStackList } from '@components/TechStackList'
-import { PROFILE_NICKNAME } from '@site/profile'
-import { parseProjectStack } from '@lib/helpers/parseProjectStack'
-import { getReadmeContent } from '../api/get-readme-content'
-import { DEFAULT_BRANCH, GITHUB_API_RAW } from '@site/github'
-import type { IStoredProject } from '../types'
+import { DEFAULT_BRANCH, GITHUB_NICKNAME } from '@site/github'
+import { parseJsonArray } from '@helpers/parseJsonArray'
+import { createRepoRawUrl } from '@helpers/github/createRepoRawUrl'
+import type { IProject } from '@app/projects/types'
 
-export const Project = async ({
-  title,
-  description,
-  stack,
-  link_repo,
-  link_readme_md
-}: IStoredProject) => {
-  const readmeContent = await getReadmeContent(link_readme_md)
-  const parsedStack = stack ? parseProjectStack(stack) : []
+interface Props {
+  project: IProject
+  mdxContent: string
+}
+
+export const Project = ({
+  project: { title, description, stack, linkRepo },
+  mdxContent
+}: Props) => {
+  const parsedStack = stack ? parseJsonArray(stack) : []
 
   return (
     <div className='flex flex-col'>
@@ -38,10 +38,14 @@ export const Project = async ({
       )}
 
       <MDXComponent
-        repoUrl={link_repo}
-        repoRawUrl={`${GITHUB_API_RAW}/${PROFILE_NICKNAME}/${title}/${DEFAULT_BRANCH}`}
+        repoUrl={linkRepo}
+        repoRawUrl={createRepoRawUrl({
+          owner: GITHUB_NICKNAME,
+          repository: title,
+          branch: DEFAULT_BRANCH
+        })}
       >
-        {readmeContent}
+        {mdxContent}
       </MDXComponent>
     </div>
   )
