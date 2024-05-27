@@ -1,12 +1,11 @@
-import { type FC } from 'react'
 import Link from 'next/link'
 
-import { TechStackList } from '@components/tech-stack-list'
-import { Card, CardContent, CardDescription, CardTitle } from '@ui/card'
+import { TechStackList } from '@components/TechStackList'
+import { Card, CardContent, CardDescription, CardTitle } from '@ui/Card'
 import { PATH_PROJECTS } from '@site/paths'
-import type { IProject } from '../types'
+import type { IProject } from '@modules/projects/types'
 
-export const ProjectCard: FC<IProject> = ({ id, title, cover, stack, description }) => (
+export const ProjectCard = ({ id, title, cover, stack, description }: IProject) => (
   <Link href={`${PATH_PROJECTS}/${id}`}>
     <Card className='group relative w-full cursor-pointer border border-neutral-200 shadow-none dark:border-neutral-800'>
       <div className='h-48 w-full rounded-t-xl'>

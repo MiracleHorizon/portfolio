@@ -2,11 +2,15 @@
 
 import { useMemo } from 'react'
 
-import { ProjectCard } from './project-card'
+import { ProjectCard } from './ProjectCard'
 import { parseProjectStack } from '@lib/helpers/parseProjectStack'
-import type { IStoredProject } from '../types'
+import type { IStoredProject } from '@modules/projects/types'
 
-export function Projects({ storedProjects }: Props) {
+interface Props {
+  storedProjects: IStoredProject[]
+}
+
+export const Projects = ({ storedProjects }: Props) => {
   const projects = useMemo(() => {
     if (storedProjects.length === 0) {
       return []
@@ -34,8 +38,4 @@ export function Projects({ storedProjects }: Props) {
       </ul>
     </main>
   )
-}
-
-interface Props {
-  storedProjects: IStoredProject[]
 }

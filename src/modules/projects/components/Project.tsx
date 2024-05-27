@@ -1,19 +1,19 @@
-import { Separator } from '@ui/separator'
+import { Separator } from '@ui/Separator'
 import { MDXComponent } from '@components/mdx'
-import { TechStackList } from '@components/tech-stack-list'
+import { TechStackList } from '@components/TechStackList'
 import { PROFILE_NICKNAME } from '@site/profile'
 import { parseProjectStack } from '@lib/helpers/parseProjectStack'
 import { getReadmeContent } from '../api/get-readme-content'
 import { DEFAULT_BRANCH, GITHUB_API_RAW } from '@site/github'
 import type { IStoredProject } from '../types'
 
-export async function Project({
+export const Project = async ({
   title,
   description,
   stack,
   link_repo,
   link_readme_md
-}: IStoredProject) {
+}: IStoredProject) => {
   const readmeContent = await getReadmeContent(link_readme_md)
   const parsedStack = stack ? parseProjectStack(stack) : []
 

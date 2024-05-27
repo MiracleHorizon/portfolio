@@ -26,6 +26,7 @@ SyntaxHighlighter.registerLanguage(languages.tsx, tsx)
 SyntaxHighlighter.registerLanguage(languages.css, css)
 
 // TODO: Копирование
+// TODO: Props
 export const MdxCodeBlock = ({ className = '', children, inline, ...props }: any) => {
   const [isCopied, setIsCopied] = useState<boolean>(false)
   // const [value, copy] = useCopyToClipboard()

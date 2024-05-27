@@ -1,7 +1,13 @@
-import { Project } from '../components/project'
+import { Project } from '../components/Project'
 import { getProject } from '../api/get-project'
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
+interface Props {
+  params: {
+    slug: string
+  }
+}
+
+const ProjectPage = async ({ params }: Props) => {
   const project = await getProject(+params.slug)
 
   if (!project) {
@@ -10,3 +16,5 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
   return <Project {...project} />
 }
+
+export default ProjectPage

@@ -3,7 +3,7 @@
 import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/Select'
 
 const iconsSizes = {
   width: 20,
@@ -29,8 +29,8 @@ export function ThemeSelect() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <Select value={theme} defaultValue={theme} onValueChange={setTheme}>
-      <SelectTrigger >
+    <Select value={typeof window !== 'undefined' ? theme : 'system'} onValueChange={setTheme}>
+      <SelectTrigger>
         <SelectValue placeholder='Theme' />
       </SelectTrigger>
 

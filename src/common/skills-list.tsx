@@ -45,6 +45,8 @@ import {
   SiReduxHex,
   SiSass,
   SiSassHex,
+  SiStylelint,
+  SiStylelintHex,
   SiTailwindcss,
   SiTailwindcssHex,
   SiTypescript,
@@ -59,8 +61,8 @@ import {
   SiYarnHex
 } from '@icons-pack/react-simple-icons'
 
-import { PiniaLogo } from './logos/pinia-logo'
-import { ViteLogo } from './logos/vite-logo'
+import { PiniaLogo } from '@ui/logos/PiniaLogo'
+import { ViteLogo } from '@ui/logos/ViteLogo'
 
 export const skillsList = {
   JavaScript: <SiJavascript color={SiJavascriptHex} />,
@@ -94,6 +96,7 @@ export const skillsList = {
   HTML: <SiHtml5 color={SiHtml5Hex} />,
   Prettier: <SiPrettier color={SiPrettierHex} />,
   ESLint: <SiEslint color={SiEslintHex} />,
+  Stylelint: <SiStylelint color={SiStylelintHex} />,
   SASS: <SiSass color={SiSassHex} />,
   Mantine: <SiMantine color={SiMantineHex} />,
   'react-router': <SiReactrouter color={SiReactrouterHex} />

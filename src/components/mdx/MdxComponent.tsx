@@ -1,4 +1,4 @@
-import type { FC, PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
@@ -6,12 +6,12 @@ import dynamic from 'next/dynamic'
 
 import { mergeCn } from '@lib/tailwind-merge'
 
-const MdxCodeBlock = dynamic(() => import('./mdx-code-block').then(mod => mod.MdxCodeBlock), {
+const MdxCodeBlock = dynamic(() => import('./MdxCodeBlock').then(mod => mod.MdxCodeBlock), {
   ssr: false,
   loading: () => <div className='mb-12 mt-12 h-36 w-full' />
 })
 
-const Table: FC<PropsWithChildren> = ({ children }) => (
+const Table = ({ children }: PropsWithChildren) => (
   <div className='table-container'>
     <table className='table w-full'>{children}</table>
   </div>
@@ -26,7 +26,7 @@ interface Props extends MarkdownRendererProps {
   repoRawUrl: string
 }
 
-export const MDXComponent: FC<Props> = ({ children, repoUrl, repoRawUrl }) => (
+export const MDXComponent = ({ children, repoUrl, repoRawUrl }: Props) => (
   <ReactMarkdown
     remarkPlugins={[remarkGfm]}
     rehypePlugins={[rehypeRaw]}

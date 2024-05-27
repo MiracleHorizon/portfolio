@@ -1,5 +1,5 @@
 import { Home } from '@modules/home'
 
-export default function HomePage() {
-  return <Home />
-}
+const HomePage = () => <Home />
+
+export default HomePage

@@ -1,42 +1,21 @@
-'use client'
-
 import Link from 'next/link'
-import { type FC, type ReactNode, useState } from 'react'
+import { type ReactNode, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { ArrowRightIcon, HomeIcon, PresentationIcon, RocketIcon, UserIcon } from 'lucide-react'
+import { ArrowRightIcon } from 'lucide-react'
 
 import { mergeCn } from '@lib/tailwind-merge'
-import { PATH_ABOUT, PATH_CONTACT, PATH_HOME, PATH_PROJECTS } from '@site/paths'
 
-const iconsSizes = {
-  width: 20,
-  height: 20
-} as const
+interface NavigationItemProps {
+  label: string
+  href: string
+  icon?: ReactNode
+  className?: string
+  children?: ReactNode
+  hideIcon?: boolean
+  onClick?: VoidFunction
+}
 
-const navigationItems: NavigationItemProps[] = [
-  {
-    label: 'Home',
-    href: PATH_HOME,
-    icon: <HomeIcon {...iconsSizes} />
-  },
-  {
-    label: 'Projects',
-    href: PATH_PROJECTS,
-    icon: <PresentationIcon {...iconsSizes} />
-  },
-  {
-    label: 'About',
-    href: PATH_ABOUT,
-    icon: <UserIcon {...iconsSizes} />
-  },
-  {
-    label: 'Contact',
-    href: PATH_CONTACT,
-    icon: <RocketIcon {...iconsSizes} />
-  }
-] as const
-
-const NavigationItem: FC<NavigationItemProps> = ({
+export const NavigationItem = ({
   label,
   href,
   icon,
@@ -44,7 +23,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
   className = '',
   children,
   hideIcon = false
-}) => {
+}: NavigationItemProps) => {
   const [isHovered, setIsHovered] = useState(false)
   const isExternalUrl = href.includes('http')
   const isHashLink = href === '#'
@@ -99,23 +78,3 @@ const NavigationItem: FC<NavigationItemProps> = ({
     </Link>
   )
 }
-
-export default NavigationItem
-
-interface NavigationItemProps {
-  label: string
-  href: string
-  icon?: ReactNode
-  className?: string
-  children?: ReactNode
-  hideIcon?: boolean
-  onClick?: VoidFunction
-}
-
-export const NavigationMenu = () => (
-  <nav className='flex flex-col gap-1'>
-    {navigationItems.map(item => (
-      <NavigationItem key={item.href} {...item} />
-    ))}
-  </nav>
-)
