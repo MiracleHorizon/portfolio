@@ -1,4 +1,4 @@
-import prisma from '@lib/prisma'
+import { prisma } from '@lib/prisma'
 import type { IStoredProject } from '@app/projects/types'
 
 export const fetchProjectByTitle = async (title: string): Promise<IStoredProject | null> => {

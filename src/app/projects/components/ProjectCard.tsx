@@ -12,7 +12,7 @@ export const ProjectCard = ({ title, cover, stack, description }: IProject) => (
         {cover ? (
           <img
             src={cover}
-            alt={title}
+            alt={`Cover image for ${title}`}
             className='h-full w-full rounded-t-xl object-cover object-left'
           />
         ) : (

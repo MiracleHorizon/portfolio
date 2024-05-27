@@ -6,5 +6,6 @@ interface Parameters {
   branch: string
 }
 
+// TODO: Validation
 export const createRepoRawUrl = ({ owner, repository, branch }: Parameters): string =>
   `${GITHUB_API_RAW}/${owner}/${repository}/${branch}`

@@ -23,8 +23,8 @@ export const SkillsSection = () => {
 
       return (
         <InfiniteLoopSlider key={index} isReverse={index === 1}>
-          {sliderSkills.map(([title, icon], index) => (
-            <SkillTag key={index} title={title} icon={icon} />
+          {sliderSkills.map(([title, icon]) => (
+            <SkillTag key={title} title={title} icon={icon} />
           ))}
         </InfiniteLoopSlider>
       )
