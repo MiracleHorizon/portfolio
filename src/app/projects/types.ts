@@ -10,8 +10,9 @@ export interface IStoredProject {
 }
 
 export interface IProject
-  extends Omit<IStoredProject, 'link_repo' | 'link_demo' | 'link_readme_md'> {
+  extends Omit<IStoredProject, 'link_repo' | 'link_demo' | 'link_readme_md' | 'stack'> {
   linkDemo: string
   linkRepo: string
   linkReadme: string | null
+  stack: string[]
 }

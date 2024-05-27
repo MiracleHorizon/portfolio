@@ -3,9 +3,8 @@
 import { useMemo } from 'react'
 
 import { ProjectCard } from './ProjectCard'
-import { parseJsonArray } from '@helpers/parseJsonArray'
-import { snakeCaseToCamelCase } from '@helpers/snakeCaseToCamelCase'
-import type { IStoredProject } from '@app/projects/types'
+import { storedProjectToProject } from '../helpers/storedProjectToProject'
+import type { IStoredProject } from '../types'
 
 interface Props {
   storedProjects: IStoredProject[]
@@ -17,10 +16,7 @@ export const Projects = ({ storedProjects }: Props) => {
       return []
     }
 
-    return storedProjects.map(({ stack, ...project }) => ({
-      ...snakeCaseToCamelCase(project),
-      stack: stack ? parseJsonArray(stack) : []
-    }))
+    return storedProjects.map(storedProjectToProject)
   }, [storedProjects])
 
   if (projects.length === 0) {

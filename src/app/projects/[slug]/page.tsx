@@ -1,7 +1,7 @@
 import { Project } from './components/Project'
 import { fetchProjectByTitle } from './api/fetchProjectByTitle'
 import { fetchProjectReadme } from './api/fetchProjectReadme'
-import { snakeCaseToCamelCase } from '@helpers/snakeCaseToCamelCase'
+import { storedProjectToProject } from '../helpers/storedProjectToProject'
 
 interface Props {
   params: {
@@ -18,7 +18,7 @@ const ProjectPage = async ({ params }: Props) => {
 
   const readmeContent = await fetchProjectReadme(project.link_readme_md)
 
-  return <Project project={snakeCaseToCamelCase(project)} mdxContent={readmeContent} />
+  return <Project project={storedProjectToProject(project)} mdxContent={readmeContent} />
 }
 
 export default ProjectPage

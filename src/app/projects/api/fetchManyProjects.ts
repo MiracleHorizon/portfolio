@@ -6,7 +6,7 @@ interface Parameters {
   take?: number
 }
 
-export const fetchManyProjects = async (parameters: Parameters): Promise<IStoredProject[]> => {
+export const fetchManyProjects = async (parameters?: Parameters): Promise<IStoredProject[]> => {
   try {
     return prisma.project.findMany({
       orderBy: {

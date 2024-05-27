@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { TechStackList } from '@components/TechStackList'
 import { Card, CardContent, CardDescription, CardTitle } from '@ui/Card'
 import { PATH_PROJECTS } from '@site/paths'
-import type { IProject } from '@modules/projects/types'
+import type { IProject } from '@app/projects/types'
 
 export const ProjectCard = ({ title, cover, stack, description }: IProject) => (
   <Link href={`${PATH_PROJECTS}/${title}`}>
@@ -12,7 +12,7 @@ export const ProjectCard = ({ title, cover, stack, description }: IProject) => (
         {cover ? (
           <img src={cover} alt={title} className='h-full w-full object-cover object-left' />
         ) : (
-          <div className='h-full w-full bg-neutral-200 dark:bg-neutral-900' />
+          <div className='h-full w-full rounded-b-xl bg-neutral-200 dark:bg-neutral-900' />
         )}
       </div>
 
