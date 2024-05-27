@@ -13,7 +13,7 @@ model project {
   description    String
   link_demo      String
   link_repo      String
-  link_readme_md String  @default("")
-  stack          String  @default("[]")
+  link_readme_md String
+  stack          String?
   cover          String?
 }
