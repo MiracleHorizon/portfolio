@@ -10,9 +10,13 @@ export const ProjectCard = ({ title, cover, stack, description }: IProject) => (
     <Card className='group relative w-full cursor-pointer border border-neutral-200 shadow-none dark:border-neutral-800'>
       <div className='h-48 w-full rounded-t-xl'>
         {cover ? (
-          <img src={cover} alt={title} className='h-full w-full object-cover object-left' />
+          <img
+            src={cover}
+            alt={title}
+            className='h-full w-full rounded-t-xl object-cover object-left'
+          />
         ) : (
-          <div className='h-full w-full rounded-b-xl bg-neutral-200 dark:bg-neutral-900' />
+          <div className='h-full w-full rounded-t-xl bg-neutral-200 dark:bg-neutral-900' />
         )}
       </div>
 
