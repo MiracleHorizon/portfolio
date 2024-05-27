@@ -1,2 +1,4 @@
-export const GITHUB_API = 'https://api.github.com'
-export const ENDPOINT_REPOSITORIES = 'repos'
+export const GITHUB_NICKNAME = 'MiracleHorizon'
+export const DEFAULT_BRANCH = 'main'
+
+export const GITHUB_API_RAW = 'https://raw.githubusercontent.com'
