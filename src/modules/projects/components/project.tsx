@@ -4,8 +4,8 @@ import { TechStackList } from '@components/tech-stack-list'
 import { PROFILE_NICKNAME } from '@site/profile'
 import { parseProjectStack } from '@lib/helpers/parseProjectStack'
 import { getReadmeContent } from '../api/get-readme-content'
-import type { IStoredProject } from '../types'
 import { DEFAULT_BRANCH, GITHUB_API_RAW } from '@site/github'
+import type { IStoredProject } from '../types'
 
 export async function Project({
   title,
@@ -15,7 +15,7 @@ export async function Project({
   link_readme_md
 }: IStoredProject) {
   const readmeContent = await getReadmeContent(link_readme_md)
-  const parsedStack = parseProjectStack(stack)
+  const parsedStack = stack ? parseProjectStack(stack) : []
 
   return (
     <div className='flex flex-col'>

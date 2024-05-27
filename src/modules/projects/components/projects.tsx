@@ -17,7 +17,7 @@ export function Projects({ storedProjects }: Props) {
       linkRepo: project.link_repo,
       linkDemo: project.link_demo,
       linkReadme: project.link_readme_md,
-      stack: parseProjectStack(project.stack)
+      stack: project.stack ? parseProjectStack(project.stack) : []
     }))
   }, [storedProjects])
 
