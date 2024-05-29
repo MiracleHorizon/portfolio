@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 
 import { mergeCn } from '@lib/tailwind-merge'
 
-const MdxCodeBlock = dynamic(() => import('./MdxCodeBlock').then(mod => mod.MdxCodeBlock), {
+const CodeBlock = dynamic(() => import('@components/CodeBlock').then(mod => mod.CodeBlock), {
   ssr: false,
   loading: () => <div className='mb-12 mt-12 h-36 w-full' />
 })
@@ -64,7 +64,9 @@ export const MDXComponent = ({ children, repoUrl, repoRawUrl }: Props) => (
       ),
       ul: props => <ul className='mb-3 list-disc space-y-3 pl-10' {...props} />,
       ol: props => <ol className='mb-3 list-decimal space-y-3 pl-10' {...props} />,
-      code: props => <MdxCodeBlock {...props} />,
+      // eslint-disable-next-line
+      // @ts-ignore
+      code: props => <CodeBlock {...props} />,
       blockquote: props => (
         <blockquote
           className='rounded-br-2xl border-l-[5px] border-neutral-700 border-l-cyan-500 bg-neutral-200 py-3 pl-6  text-lg font-medium text-cyan-800 dark:bg-neutral-800 dark:text-cyan-200'

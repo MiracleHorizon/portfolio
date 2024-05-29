@@ -1,7 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { type PropsWithChildren, useEffect, useState } from 'react'
+import {
+  PrismLight as SyntaxHighlighter,
+  type SyntaxHighlighterProps
+} from 'react-syntax-highlighter'
 import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css'
 import diff from 'react-syntax-highlighter/dist/cjs/languages/prism/diff'
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
@@ -9,7 +12,7 @@ import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx'
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript'
 import { a11yDark as themeColor } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { CheckIcon, CopyIcon } from 'lucide-react'
-// import { useCopyToClipboard } from 'usehooks-ts'
+import { useCopyToClipboard } from 'usehooks-ts'
 
 const languages = {
   javascript: 'javascript',
@@ -25,15 +28,19 @@ SyntaxHighlighter.registerLanguage(languages.diff, diff)
 SyntaxHighlighter.registerLanguage(languages.tsx, tsx)
 SyntaxHighlighter.registerLanguage(languages.css, css)
 
-// TODO: Копирование
-// TODO: Props
-export const MdxCodeBlock = ({ className = '', children, inline, ...props }: any) => {
+type Props = PropsWithChildren<{
+  className?: string
+  inline?: boolean
+}> &
+  SyntaxHighlighterProps
+
+export const CodeBlock = ({ className = '', children, inline, ...props }: Props) => {
   const [isCopied, setIsCopied] = useState<boolean>(false)
-  // const [value, copy] = useCopyToClipboard()
+  const [, copy] = useCopyToClipboard()
   const match = /language-(\w+)/.exec(className || '')
 
   const handleCopy = () => {
-    // copy(code)
+    void copy(children.toString())
     setIsCopied(true)
   }
 
@@ -78,7 +85,7 @@ export const MdxCodeBlock = ({ className = '', children, inline, ...props }: any
             }}
             PreTag='div'
             language={match ? match[1] : 'javascript'}
-            wrapLongLines={true}
+            wrapLongLines
           >
             {String(children).replace(/\n$/, '')}
           </SyntaxHighlighter>
